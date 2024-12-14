@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 03</title>
+
+    <style>
+        .error {
+            color: red;
+            display: none;
+        }
+        .input-error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    Операнд 1: <input id="input1" type="text"> <br>
+    <span id="input1Error" class="error">Ошибка</span> <br>
+    Операнд 2: <input id="input2" type="text"> <br>
+    <span id="input2Error" class="error">Ошибка</span> <br>
+    <button id="add-btn">+</button>
+    <button id="rem-btn">-</button>
+    <button id="mul-btn">*</button>
+    <button id="div-btn">/</button>
+    <button id="reset-btn">reset</button>
+    <script>
+        let input1 = document.querySelector("#input1");
+        let input2 = document.querySelector("#input2");
+        let input1Error = document.querySelector("#input1Error");
+        let input2Error = document.querySelector("#input2Error");
+        let addBtn = document.querySelector("#add-btn");
+        let remBtn = document.querySelector("#rem-btn");
+        let mulBtn = document.querySelector("#mul-btn");
+        let divBtn = document.querySelector("#div-btn");
+        let resetBtn = document.querySelector("#reset-btn");
+        function checkInputs() 
+        {
+            let valid = true;
+            input1.classList.remove("input-error");
+            input2.classList.remove("input-error");
+            input1Error.style.display = "none";
+            input2Error.style.display = "none";
+            if (!input1.value.trim()) 
+            {
+                valid = false;
+                input1.classList.add("input-error");
+                input1Error.style.display = "inline";
+            }
+            if (!input2.value.trim()) 
+            {
+                valid = false;
+                input2.classList.add("input-error");
+                input2Error.style.display = "inline";
+            }
+            return valid;
+        }
+        addBtn.addEventListener("click", function () 
+        {
+            if (checkInputs()) 
+            {
+                alert(Number(input1.value) + Number(input2.value));
+            }
+        }
+        );
+
+        remBtn.addEventListener("click", function () 
+        {
+            if (checkInputs()) 
+            {
+                alert(Number(input1.value) - Number(input2.value));
+            }
+        }
+        );
+
+        mulBtn.addEventListener("click", function () 
+        {
+            if (checkInputs()) 
+            {
+                alert(Number(input1.value) * Number(input2.value));
+            }
+        }
+        );
+
+        divBtn.addEventListener("click", function () 
+        {
+            if (checkInputs()) 
+            {
+                if (Number(input2.value) === 0) 
+                {
+                    alert("Ошибка");
+                } 
+                else 
+                {
+                    alert(Number(input1.value) / Number(input2.value));
+                }
+            }
+        }
+        );
+        resetBtn.addEventListener("click", function () 
+        {
+            input1.value = "0";
+            input2.value = "0";
+        }
+        );
+    </script>
+</body>
+
+</html>
